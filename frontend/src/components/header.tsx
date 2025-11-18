@@ -62,19 +62,19 @@ const Header: React.FC = () => {
         <>
             <header className={headerClasses}>
                 <div className="z-[101]" onMouseOver={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
-                    <Link href="#" className="flex gap-3 font-extrabold text-2xl text-yellow-300 tracking-wider">
+                    <Link href="/" className="flex gap-3 font-extrabold text-2xl text-yellow-300 tracking-wider">
                         <Image src={'/icon.png'} width={500} height={500} className='h-auto w-5' alt='icon' />
                         IGNITIA
                     </Link>
                 </div>
 
                 <nav className="hidden md:flex items-center gap-8">
-                    <Link href="#about" className={navLinkClasses}>ABOUT</Link>
-                    <Link href="#events" className={navLinkClasses}>EVENTS</Link>
-                    <Link href="#gallery" className={navLinkClasses}>GALLERY</Link>
-                    <Link href="#sponsors" className={navLinkClasses}>SPONSORS</Link>
-                    <Link href="#teams" className={navLinkClasses}>TEAMS</Link>
-                    <Link href="#register" className={registerButtonClasses} onMouseOver={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
+                    <Link href="/#about" className={navLinkClasses}>ABOUT</Link>
+                    <Link href="/#events" className={navLinkClasses}>EVENTS</Link>
+                    <Link href="/#gallery" className={navLinkClasses}>GALLERY</Link>
+                    <Link href="/#sponsors" className={navLinkClasses}>SPONSORS</Link>
+                    <Link href="/#teams" className={navLinkClasses}>TEAMS</Link>
+                    <Link href="/signup" className={registerButtonClasses} onMouseOver={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
                         REGISTER
                     </Link>
                 </nav>

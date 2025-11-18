@@ -10,7 +10,7 @@ import {
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
 
-export function LoginForm({
+export function SignupForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
@@ -23,26 +23,38 @@ export function LoginForm({
             textShadow: "0 0 30px rgba(253,224,71,0.6), 0 0 60px rgba(253,224,71,0.4)"
           }}
         >
-          Login
+          Register for Ignitia 2K26
         </h2>
         <Field>
-          <FieldLabel htmlFor="email" className="text-yellow-100">Email</FieldLabel>
-          <Input id="email" type="email" placeholder="m@example.com" className="rounded-[10px]" required />
+          <FieldLabel htmlFor="name" className="text-yellow-100">Full Name</FieldLabel>
+          <Input id="name" type="text" placeholder="John Doe" className="rounded-[10px]" required />
         </Field>
         <Field>
-          <div className="flex items-center">
-            <FieldLabel htmlFor="password" className="text-yellow-100">Password</FieldLabel>
-            <Link
-              href="#"
-              className="ml-auto text-sm underline-offset-4 hover:underline"
-            >
-              Forgot your password?
-            </Link>
-          </div>
+          <FieldLabel htmlFor="email" className="text-yellow-100">Email</FieldLabel>
+          <Input id="email" type="email" className="rounded-[10px]" placeholder="m@example.com" required />
+        </Field>
+        <Field>
+          <FieldLabel htmlFor="phone" className="text-yellow-100">Phone Number</FieldLabel>
+          <Input id="phone" type="text" placeholder="+91 98765 43210" className="rounded-[10px]" required />
+        </Field>
+        <Field>
+          <FieldLabel htmlFor="rollno" className="text-yellow-100">Roll Number</FieldLabel>
+          <Input id="rollno" type="text" placeholder="Enter your roll number" className="rounded-[10px]" required />
+        </Field>
+        <Field>
+          <FieldLabel htmlFor="course" className="text-yellow-100">Course/Year</FieldLabel>
+          <Input id="course" type="text" placeholder="e.g., B.Tech CSE 2nd Year" className="rounded-[10px]" required />
+        </Field>
+        <Field>
+          <FieldLabel htmlFor="password" className="text-yellow-100">Password</FieldLabel>
           <Input id="password" type="password" placeholder="*******" className="rounded-[10px]" required />
         </Field>
         <Field>
-          <Button type="submit" className="bg-yellow-500 rounded-[10px] hover:bg-yellow-600 cursor-pointer">Login</Button>
+          <FieldLabel htmlFor="confirm-password" className="text-yellow-100">Confirm Password</FieldLabel>
+          <Input id="confirm-password" type="password" placeholder="*******" className="rounded-[10px]" required />
+        </Field>
+        <Field>
+          <Button type="submit" className="bg-yellow-500 rounded-[10px] hover:bg-yellow-600 cursor-pointer">Create Account</Button>
         </Field>
         <FieldSeparator>Or continue with</FieldSeparator>
         <Field>
@@ -52,11 +64,8 @@ export function LoginForm({
             </svg>
             Continue with Google
           </Button>
-          <FieldDescription className="text-center">
-            Don&apos;t have an account?{" "}
-            <Link href="/signup" className="underline underline-offset-4">
-              Sign up
-            </Link>
+          <FieldDescription className="px-6 text-center">
+            Already have an account? <Link href="/login">Sign in</Link>
           </FieldDescription>
         </Field>
       </FieldGroup>
