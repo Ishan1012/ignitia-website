@@ -28,13 +28,7 @@ export const useCursor = (): CursorContextType => {
     const context = useContext(CursorContext);
 
     if (context === undefined) {
-        console.warn("⚠️ useCursor() called outside of <CursorProvider>.");
-        return {
-            hovered: false,
-            disabled: false,
-            setHovered: () => { },
-            setDisabled: () => { },
-        }
+        throw new Error("⚠️ useCursor() called outside of <CursorProvider>.");
     } else {
         return context;
     }
