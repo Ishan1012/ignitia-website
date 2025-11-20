@@ -7,13 +7,13 @@ import { useEffect, useState } from "react";
 
 export default function Layout() {
   const { userSession } = useAuth();
-  const [user, setUser] = useState<UserSession | null>(userSession);
 
   useEffect(() => {
     if(userSession === null) {
       router.replace('/login');
     }
-  })
+    console.log(userSession);
+  }, []);
 
   return (
     <>

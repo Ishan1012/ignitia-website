@@ -58,7 +58,7 @@ export const signInByGoogle = async (req: Request, res: Response) => {
         if (!userDetails) {
             return res.status(401).json({ success: false, message: "Invalid credentials" });
         }
-        return res.status(200).json({ success: true, message: "User is logged in successfully!", userDetails });
+        return res.status(200).json({ success: true, message: "User is logged in successfully!", user: userDetails });
     } catch (error) {
         if (error instanceof Error) {
             return res.status(500).json({ success: false, message: "Internal server error", error: error.message });

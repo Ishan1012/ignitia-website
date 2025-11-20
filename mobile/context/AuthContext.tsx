@@ -1,13 +1,13 @@
 'use client';
 import { signInApi, signInByGoogleApi, signUpApi, userApi } from "@/apis/apis";
+import { SignInRequest, SignUpRequest, UserSession } from "@/types/type";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AxiosError } from "axios";
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
-import { SignInRequest, SignUpRequest, UserSession } from "@/types/type";
 import * as AuthSession from "expo-auth-session";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
-import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
+import * as WebBrowser from "expo-web-browser";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -47,10 +47,27 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const login = async (data: SignInRequest): Promise<boolean> => {
         try {
             const res = await signInApi(data);
-            const { userDetails } = res.data.user;
+            const userDetails = res.data?.user;
+            console.log(res, userDetails);
 
-            await AsyncStorage.setItem("userSession", JSON.stringify(userDetails));
-            setUserSession(userDetails);
+            if (!userDetails?.email) {
+                console.log('no details found');
+                return false;
+            }
+
+            const session: UserSession = {
+                email: userDetails.email,
+                name: userDetails.name,
+                token: userDetails.token,
+                profile: userDetails.profile,
+            };
+
+            if (!session.token) {
+                console.warn('Login did not return a token, authentication may fail');
+            }
+
+            await AsyncStorage.setItem("userSession", JSON.stringify(session));
+            setUserSession(session);
 
             return true;
         } catch (err) {
@@ -68,10 +85,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             if (!accessToken) return false;
 
             const response = await signInByGoogleApi(accessToken, "User");
-            const { userDetails } = response.data;
+            const userDetails = response.data.user;
 
-            await AsyncStorage.setItem("userSession", JSON.stringify(userDetails));
-            setUserSession(userDetails);
+            const session: UserSession = {
+                email: userDetails.email,
+                name: userDetails.name,
+                token: userDetails.token,
+                profile: userDetails.profile,
+            };
+
+            await AsyncStorage.setItem("userSession", JSON.stringify(session));
+            setUserSession(session);
 
             return true;
         } catch (err) {
@@ -86,8 +110,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             if (!res.data.success) throw new Error(res.data.error);
             return res.data.user;
         } catch (err) {
-            if (err instanceof AxiosError && err.response?.data.error.includes("jwt expired")) {
-                throw new Error("jwt expired");
+            if (err instanceof AxiosError) {
+                const serverError = err.response?.data?.error ?? err.response?.data ?? err.message;
+                if (typeof serverError === 'string' && serverError.includes("jwt expired")) {
+                    throw new Error("jwt expired");
+                }
             }
             console.error(err);
             return null;
@@ -97,19 +124,26 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const signup = async (data: SignUpRequest): Promise<boolean> => {
         try {
             const res = await signUpApi(data);
-            const user = res.data?.user;
+            const user = res.data.user;
 
-            if (!user?.email) {
+            const session: UserSession = {
+                email: user.email,
+                name: user.name,
+                token: user.token,
+                profile: user.profile,
+            };
+
+            if (!session.email) {
                 console.log("Email missing while signup!");
                 return false;
             }
 
-            await AsyncStorage.setItem("userSession", JSON.stringify(user));
-            setUserSession(user);
+            await AsyncStorage.setItem("userSession", JSON.stringify(session));
+            setUserSession(session);
 
             return true;
         } catch (err) {
-            console.error(err);
+            alert(err);
             return false;
         }
     };

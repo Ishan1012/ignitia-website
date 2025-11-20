@@ -34,7 +34,7 @@ function LoginFormSection() {
 				router.replace('/login');
 			}
         } catch(error) {
-            console.error("An error occured. Error: " + error);
+            alert("An error occured. Error: " + error);
 			router.replace('/login');
         }
     };
