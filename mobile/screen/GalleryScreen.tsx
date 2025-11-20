@@ -99,7 +99,7 @@ const products: GalleryImage[] = [
 const GalleryScreen: React.FC = () => {
 
   const handleImagePress = (image: GalleryImage) => {
-    console.log(`Image pressed: ${image.imageAlt}. Navigating to: ${image.href}`);
+    // console.log(`Image pressed: ${image.imageAlt}. Navigating to: ${image.href}`);
   };
 
   const columnCount = isTablet ? 3 : 2;

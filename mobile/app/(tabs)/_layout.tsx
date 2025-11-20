@@ -12,7 +12,6 @@ export default function Layout() {
     if(userSession === null) {
       router.replace('/login');
     }
-    console.log(userSession);
   }, []);
 
   return (

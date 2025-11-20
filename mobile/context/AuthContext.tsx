@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     useEffect(() => {
         (async () => {
             const stored = await AsyncStorage.getItem("userSession");
-            console.log(stored);
+            // console.log(stored);
             if (stored) setUserSession(JSON.parse(stored));
         })();
     }, []);
@@ -48,7 +48,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         try {
             const res = await signInApi(data);
             const userDetails = res.data?.user;
-            console.log(res, userDetails);
 
             if (!userDetails?.email) {
                 console.log('no details found');

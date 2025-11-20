@@ -83,7 +83,7 @@ const EventDetailScreen: React.FC<EventProps> = ({ eventId }) => {
 
     useEffect(() => {
         const fetchEvent = async () => {
-            console.log(eventId);
+            // console.log(eventId);
             const data = events.find((item) => item.id === eventId);
             if (data) {
                 setEvent(data);
