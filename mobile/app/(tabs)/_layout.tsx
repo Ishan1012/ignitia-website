@@ -10,7 +10,7 @@ export default function Layout() {
           tabBarStyle: {
             backgroundColor: "#222",
           },
-          
+
           tabBarActiveTintColor: "#fff",
           tabBarInactiveTintColor: "#888",
           headerShown: false,
