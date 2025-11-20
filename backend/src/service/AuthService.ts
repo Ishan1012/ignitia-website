@@ -8,8 +8,6 @@ import { AuthResponse } from "../interface/AuthResponse";
 import { oauth2Client } from "../config/GoogleAuthconfig";
 import axios from "axios";
 import { VerificationResponse } from "../interface/VerificationResponse";
-import { JwtPayload, verify } from "jsonwebtoken";
-import { createTransport } from "nodemailer";
 import { Message } from "../utils/Message";
 import transporter from "../config/NodeMailer";
 
@@ -37,29 +35,31 @@ export class AuthService {
         const verificationToken = crypto.randomBytes(32).toString('hex');
 
 
-            const createdUser = await this.userService.saveUser({
-                name: IUser.name,
-                email: IUser.email,
-                password: hashedPassword,
-                verificationToken
-            });
+        const createdUser = await this.userService.saveUser({
+            name: userRequest.name,
+            email: userRequest.email,
+            password: hashedPassword,
+            phone: userRequest.phone,
+            rollno: userRequest.rollno,
+            course: userRequest.course,
+            verificationToken
+        });
 
-            if (!createdUser) {
-                throw new Error("Unable to create new User!");
-            }
+        if (!createdUser) {
+            throw new Error("Unable to create new User!");
+        }
 
-            const token = this.jwtService.generateToken(createdUser?.email, "User", createdUser?.id);
+        const token = this.jwtService.generateToken(createdUser.email, "User", createdUser.id);
 
-            const verificationUrl = `${process.env.BASE_URL}/api/v1/auth/verify/${createdUser.verificationToken}`;
-            await transporter.sendMail({
-                from: `no reply <${process.env.EMAIL_ID}>`,
-                to: createdUser.email,
-                subject: 'Verify Your Email',
-                html: Message(verificationUrl),
-            });
+        const verificationUrl = `${process.env.BASE_URL}/api/v1/auth/verify/${createdUser.verificationToken}`;
+        await transporter.sendMail({
+            from: `no reply <${process.env.EMAIL_ID}>`,
+            to: createdUser.email,
+            subject: 'Verify Your Email',
+            html: Message(verificationUrl),
+        });
 
-            return { token: token, email: createdUser.email, name: createdUser.name, verificationToken };
-
+        return { token: token, email: createdUser.email, name: createdUser.name, verificationToken };
     }
 
     async signIn(signInRequest: AuthRequest): Promise<AuthResponse | null> {
@@ -69,57 +69,31 @@ export class AuthService {
             throw new Error(`Following details not defined!\n Please provide following to proceed:\n email: ${!!email}, password: ${!!password}`);
         }
 
-        const patient = await this.userService.findUserByEmail(email);
-        const doctor = await this.doctorService.findDoctorByEmail(email);
+        const user = await this.userService.findUserByEmail(email);
 
-        if (!patient && !doctor) {
+        if (!user) {
             return null;
         }
 
-        if (patient) {
-            const isPasswordValid = await bcrypt.compare(password, patient.password as string);
+        const isPasswordValid = await bcrypt.compare(password, user.password as string);
 
-            if (isPasswordValid) {
-                const token = this.jwtService.generateToken(patient.email, "User", patient.id);
-                return { token: token, email: patient.email, name: patient.name };
-            }
-
-            return null;
-        } else if (doctor) {
-            const isPasswordValid = await bcrypt.compare(password, doctor.password as string);
-
-            if (isPasswordValid) {
-                const token = this.jwtService.generateToken(doctor.email, "Doctor", doctor.id);
-                return { token: token, email: doctor.email, name: doctor.name };
-            }
-
-            return null;
-        } else {
-            throw new Error('Invalid user type');
+        if (isPasswordValid) {
+            const token = this.jwtService.generateToken(user.email, "User", user.id);
+            return { token: token, email: user.email, name: user.name };
         }
+
+        return null;
     }
 
     async getUserById(patientId: string): Promise<Partial<IUser> | null> {
-        const patient = await this.userService.findUserById(patientId);
+        const user = await this.userService.findUserById(patientId);
 
-        if (!patient) {
+        if (!user) {
             return null;
         }
 
-        const patientObj = patient.toObject();
-        return patientObj;
-    }
-
-    async getDoctorById(doctorId: string): Promise<Partial<IDoctor> | null> {
-        const doctor = await this.doctorService.findDoctorById(doctorId);
-
-        if (!doctor) {
-            return null;
-        }
-
-        const doctorObj = doctor.toObject();
-        const { _id, password, ...rest } = doctorObj;
-        return rest;
+        const userObj = user.toObject();
+        return userObj;
     }
 
     async signInByGoogle(code: string, role: string): Promise<AuthResponse | null> {
@@ -128,45 +102,17 @@ export class AuthService {
 
         const { email, name, verified_email, picture } = userResponse.data;
 
-        let userInfo;
-        if (role === "User") {
-            userInfo = await this.doctorService.findDoctorByEmail(email);
-            if (!!userInfo) {
-                role = "Doctor";
-            }
-            if (!userInfo) {
-                userInfo = await this.userService.findUserByEmail(email);
-            }
-            if (!userInfo) {
-                userInfo = await this.userService.saveUser({
-                    name,
-                    email,
-                    password: '',
-                    isVerified: verified_email,
-                    profileUrl: picture,
-                    isOAuth: true
-                });
-            }
-        } else if (role === "Doctor") {
-            userInfo = await this.userService.findUserByEmail(email);
-            if (!!userInfo) {
-                role = "User";
-            }
-            if (!userInfo) {
-                userInfo = await this.doctorService.findDoctorByEmail(email);
-            }
-            if (!userInfo) {
-                userInfo = await this.doctorService.saveDoctor({
-                    name,
-                    email,
-                    password: '',
-                    isVerified: verified_email,
-                    profileUrl: picture,
-                    isOAuth: true
-                });
-            }
-        } else {
-            throw new Error('Invalid user role');
+        let userInfo = await this.userService.findUserByEmail(email);
+
+        if (!userInfo) {
+            userInfo = await this.userService.saveUser({
+                name,
+                email,
+                password: '',
+                isVerified: verified_email,
+                profileUrl: picture,
+                isOAuth: true
+            });
         }
 
         if (!userInfo || !userInfo.id) {
@@ -178,26 +124,16 @@ export class AuthService {
     }
 
     async verifyToken(token: string): Promise<boolean | null> {
-        const doctor: IDoctor | null = await this.doctorService.getDoctorByVerificationToken(token);
+        const user: IUser | null = await this.userService.getUserByVerificationToken(token);
 
-        if (!doctor) {
-            const patient: IUser | null = await this.userService.getUserByVerificationToken(token);
-
-            if (!patient) {
-                return false;
-            }
-
-            patient.isVerified = true;
-            patient.verificationToken = undefined;
-            await patient.save();
-
-            return true;
-        } else {
-            doctor.isVerified = true;
-            doctor.verificationToken = undefined;
-            await doctor.save();
-
-            return true;
+        if(!user) {
+            return false;
         }
+
+        user.isVerified = true;
+        user.verificationToken = undefined;
+        await user.save();
+
+        return true;
     }
 }

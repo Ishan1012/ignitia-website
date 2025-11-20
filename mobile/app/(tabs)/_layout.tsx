@@ -1,7 +1,19 @@
+'use client';
+import { useAuth } from "@/context/AuthContext";
+import { UserSession } from "@/types/type";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Tabs } from "expo-router";
+import { router, Tabs } from "expo-router";
+import { useEffect, useState } from "react";
 
 export default function Layout() {
+  const { userSession } = useAuth();
+  const [user, setUser] = useState<UserSession | null>(userSession);
+
+  useEffect(() => {
+    if(userSession === null) {
+      router.replace('/login');
+    }
+  })
 
   return (
     <>
@@ -25,15 +37,6 @@ export default function Layout() {
             />
           ),
         }} />
-        <Tabs.Screen name="events" options={{
-          headerShown: false, tabBarIcon: ({ focused, color, size }) => (
-            <Ionicons
-              name={focused ? "star" : "star-outline"}
-              size={size}
-              color={color}
-            />
-          ),
-        }} />
         <Tabs.Screen name="gallery" options={{
           headerShown: false, tabBarIcon: ({ focused, color, size }) => (
             <Ionicons
@@ -43,10 +46,28 @@ export default function Layout() {
             />
           ),
         }} />
+        <Tabs.Screen name="events" options={{
+          headerShown: false, tabBarIcon: ({ focused, color, size }) => (
+            <Ionicons
+              name={focused ? "star" : "star-outline"}
+              size={size}
+              color={color}
+            />
+          ),
+        }} />
         <Tabs.Screen name="about" options={{
           headerShown: false, tabBarIcon: ({ focused, color, size }) => (
             <Ionicons
               name={focused ? "information-circle" : "information-circle-outline"}
+              size={size}
+              color={color}
+            />
+          ),
+        }} />
+        <Tabs.Screen name="profile" options={{
+          headerShown: false, tabBarIcon: ({ focused, color, size }) => (
+            <Ionicons
+              name={focused ? "person" : "person-outline"}
               size={size}
               color={color}
             />

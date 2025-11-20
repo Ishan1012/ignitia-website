@@ -21,10 +21,6 @@ const userSchema = new Schema<IUser>({
         type: Boolean,
         default: false
     },
-    detailsComplete: {
-        type: Boolean,
-        default: false,
-    },
     status: {
         type: String,
         enum: ['active', 'inactive', 'blocked', 'suspended', 'deleted'],
@@ -44,28 +40,28 @@ const userSchema = new Schema<IUser>({
         type: String,
         default: '/images/user-default.jpg',
     },
-    age: {
-        type: Number,
-        required: function (this: IUser) {
-            return this.detailsComplete;
-        }
-    },
     phone: {
         type: String,
-        required: function (this: IUser) {
-            return this.detailsComplete;
-        }
+        required: true
     },
     isPhoneVerified: {
         type: Boolean,
         default: false
-    }
+    },
+    rollno: {
+        type: String,
+        required: true
+    },
+    course: {
+        type: String,
+        required: true
+    },
 }, {
     timestamps: true,
     toJSON: { virtuals: true },
     toObject: { virtuals: true }
 });
 
-const User = model<IUser>('Patient', userSchema);
+const User = model<IUser>('Users', userSchema);
 
 export default User;

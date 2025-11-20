@@ -97,6 +97,10 @@ const EventDetailScreen: React.FC<EventProps> = ({ eventId }) => {
         router.back();
     }
 
+    const handlePurchase = () => {
+        router.replace('/success');
+    }
+
     if (!event) {
         return (
             <View>
@@ -157,7 +161,7 @@ const EventDetailScreen: React.FC<EventProps> = ({ eventId }) => {
                             <Text style={styles.infoText}>{event.contact}</Text>
                         </View>
 
-                        <Pressable style={styles.buyButton} onPress={() => console.log(`Buying ticket for ${event.name}`)}>
+                        <Pressable style={styles.buyButton} onPress={handlePurchase}>
                             <Text style={styles.buyButtonText}>Buy Now</Text>
                         </Pressable>
                     </View>

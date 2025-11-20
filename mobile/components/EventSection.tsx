@@ -1,6 +1,6 @@
 import events from "@/constants/events";
 import { Event } from "@/types/type";
-import { useRouter } from "expo-router";
+import { router } from "expo-router";
 import React from "react";
 import {
     View,
@@ -16,13 +16,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const { width } = Dimensions.get('window');
 
 const EventSection: React.FC = () => {
-    const router = useRouter();
 
     const showEvent = (event: Event) => {
-        router.push({
-            pathname: "/event/[id]",
-            params: { id: event.id }
-        });
+        router.push(`/event/${event.id}`);
     }
 
     return (

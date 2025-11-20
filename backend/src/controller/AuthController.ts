@@ -78,7 +78,7 @@ export const verifyUser = async (req: AuthRequest, res: Response) => {
 
         const verified = await authService.verifyToken(token);
 
-        if(verified) {
+        if (verified) {
             res.status(200).send(VerificationPage());
         } else {
             return res.status(403).json({ success: false, message: "Invalid or expired token." });
@@ -104,21 +104,12 @@ export const me = async (req: AuthRequest, res: Response) => {
             return res.status(401).json({ success: false, message: "No userId found!" });
         }
 
-        if (user.role === "Patient") {
-            const patient = await authService.getPatientById(user.userId);
-            if (!patient) {
-                return res.status(404).json({ success: false, message: "Patient not found!" });
-            }
-            return res.status(200).json({ success: true, user: patient });
-        } else if (user.role === "Doctor") {
-            const doctor = await authService.getDoctorById(user.userId);
-            if (!doctor) {
-                return res.status(404).json({ success: false, message: "Doctor not found!" });
-            }
-            return res.status(200).json({ success: true, user: doctor });
-        } else {
-            return res.status(401).json({ success: false, message: "Unauthorized user role!" });
+        const getUser = await authService.getUserById(user.userId);
+        if (!getUser) {
+            return res.status(404).json({ success: false, message: "Patient not found!" });
         }
+        return res.status(200).json({ success: true, user: getUser });
+
     } catch (error) {
         if (error instanceof Error) {
             return res.status(500).json({ success: false, message: "Internal server error", error: error.message });

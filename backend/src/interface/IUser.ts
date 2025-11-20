@@ -12,6 +12,8 @@ export interface IUser extends Document{
     profileUrl?: string;
     age: number;
     phone: string;
+    rollno: string;
+    course: string;
     isPhoneVerified: boolean;
     createdAt: Date;
     updatedAt: Date;
