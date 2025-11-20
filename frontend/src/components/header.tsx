@@ -70,9 +70,9 @@ const Header: React.FC = () => {
 
                 <nav className="hidden md:flex items-center gap-8">
                     <Link href="/#about" className={navLinkClasses}>ABOUT</Link>
-                    <Link href="/#events" className={navLinkClasses}>EVENTS</Link>
+                    <Link href="/events" className={navLinkClasses}>EVENTS</Link>
                     <Link href="/#gallery" className={navLinkClasses}>GALLERY</Link>
-                    <Link href="/#sponsors" className={navLinkClasses}>SPONSORS</Link>
+                    <Link href="/sponsors" className={navLinkClasses}>SPONSORS</Link>
                     <Link href="/#teams" className={navLinkClasses}>TEAMS</Link>
                     <Link href="/signup" className={registerButtonClasses} onMouseOver={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
                         REGISTER

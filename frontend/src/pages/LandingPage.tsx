@@ -12,9 +12,7 @@ const LandingPage = () => {
         <>
             <HeroSection />
             <AboutSection />
-            <EventSection />
             <GallerySection />
-            <SponsorSection />
             <TeamSection />
         </>
     )

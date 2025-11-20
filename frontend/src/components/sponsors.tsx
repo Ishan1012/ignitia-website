@@ -2,7 +2,7 @@ import React from 'react';
 
 const SponsorSection = () => {
     return (
-        <div className="bg-zinc-950 py-12 sm:py-12" id="sponsors">
+        <div className="bg-zinc-950 py-24 sm:py-12 mt-10" id="sponsors">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <h2
                     className="mx-auto mt-5 max-w-lg text-center text-4xl font-semibold tracking-tight text-balance text-yellow-50 sm:text-5xl underline underline-offset-8 decoration-yellow-200/50"
