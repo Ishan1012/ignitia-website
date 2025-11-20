@@ -123,7 +123,7 @@ const HeroSection: React.FC = () => {
                     </motion.h1>
                 </div>
 
-                <motion.p variants={itemVariants} className="wrapper cursor-default relative h-[1.2em] my-[10px] mb-[25px] text-5xl font-bold">
+                <motion.p variants={itemVariants} className="wrapper cursor-default relative h-[1.2em] my-[10px] mb-[25px] text-md md:text-3xl lg:text-5xl font-bold">
                     <AnimatePresence mode="wait">
                         <motion.strong
                             key={TITLES[activeIndex]}
