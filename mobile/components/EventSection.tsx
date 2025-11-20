@@ -20,7 +20,7 @@ const EventSection: React.FC = () => {
 
     const showEvent = (event: Event) => {
         router.push({
-            pathname: "/events/[id]",
+            pathname: "/event/[id]",
             params: { id: event.id }
         });
     }
