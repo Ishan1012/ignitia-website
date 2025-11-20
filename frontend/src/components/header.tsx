@@ -98,7 +98,15 @@ const Header: React.FC = () => {
                         onClick={closeMobileMenu}
                     >
                         <motion.a
-                            href="#events"
+                            href="/#about"
+                            className="text-white text-2xl font-medium"
+                            initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.1 }}
+                            onClick={closeMobileMenu}
+                        >
+                            ABOUT
+                        </motion.a>
+                        <motion.a
+                            href="/events"
                             className="text-white text-2xl font-medium"
                             initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.1 }}
                             onClick={closeMobileMenu}
@@ -106,15 +114,15 @@ const Header: React.FC = () => {
                             EVENTS
                         </motion.a>
                         <motion.a
-                            href="#schedule"
+                            href="/#gallery"
                             className="text-white text-2xl font-medium"
                             initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2 }}
                             onClick={closeMobileMenu}
                         >
-                            SCHEDULE
+                            GALLERY
                         </motion.a>
                         <motion.a
-                            href="#sponsors"
+                            href="/sponsors"
                             className="text-white text-2xl font-medium"
                             initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.3 }}
                             onClick={closeMobileMenu}
@@ -122,7 +130,15 @@ const Header: React.FC = () => {
                             SPONSORS
                         </motion.a>
                         <motion.a
-                            href="#register"
+                            href="/#teams"
+                            className="text-white text-2xl font-medium"
+                            initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.3 }}
+                            onClick={closeMobileMenu}
+                        >
+                            TEAMS
+                        </motion.a>
+                        <motion.a
+                            href="/signup"
                             className={`${registerButtonClasses} text-lg`}
                             initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.4 }}
                             onClick={closeMobileMenu}
