@@ -142,14 +142,14 @@ const HeroSection: React.FC = () => {
                 </motion.p>
                 <div className="mt-10 flex items-center justify-center gap-x-6">
                     <Link
-                        href="#events"
+                        href="/events"
                         className="bg-amber-500 rounded-[10px] px-4.5 py-3.5 text-md font-semibold text-white shadow-xs hover:bg-yellow-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 hover:shadow-[0_0_40px_rgba(253,224,71,0.5)] transition-colors duration-600"
                         onMouseOver={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
                     >
                         View Events
                     </Link>
                     <Link
-                        href="#about"
+                        href="/#about"
                         className="bg-transparent border-2 border-amber-500 rounded-[10px] px-4.5 py-3 text-md font-semibold text-white shadow-xs hover:bg-yellow-400 focus-visible:outline-2 hover:border-yellow-400 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 transition-colors duration-500"
                         onMouseOver={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
                     >
