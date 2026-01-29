@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ignitia Website",
-  description: "A demo of Ignitia Website",
+  title: "Tapestry",
+  description: "A Cultural Fest Website",
 };
 
 export default function RootLayout({

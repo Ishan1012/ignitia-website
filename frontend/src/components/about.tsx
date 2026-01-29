@@ -26,18 +26,18 @@ const AboutSection: React.FC = () => {
                                 textShadow: "0 0 30px rgba(253,224,71,0.6), 0 0 60px rgba(253,224,71,0.4)"
                             }}
                         >
-                            About PSIT
+                            About
                         </h2>
                         <p className="mt-6 text-[1.1rem] text-pretty text-gray-300 cursor-default">
-                            Pranveer Singh Institute of Technology (PSIT) is a premier engineering institution located in Kanpur, Uttar Pradesh. Established with a vision to provide quality technical education, PSIT has consistently produced industry-ready professionals who excel in their respective fields.
+                            This premier engineering campus is located in a prominent academic city and is dedicated to delivering high-quality technical education. Established with a strong vision for academic excellence, it has consistently developed skilled, industry-ready graduates who succeed across a wide range of professional fields.
 
-                            With state-of-the-art infrastructure, experienced faculty, and a vibrant campus life, PSIT offers undergraduate and postgraduate programs in various engineering disciplines. The institute emphasizes holistic development through academic excellence, research opportunities, and extracurricular activities.
+                            Featuring modern infrastructure, experienced faculty, and a dynamic campus environment, the institution provides undergraduate and postgraduate programs in multiple engineering and technology disciplines. A strong emphasis is placed on holistic development through rigorous academics, hands-on research exposure, industry interaction, and diverse extracurricular opportunities.
                         </p>
                     </div>
                     <div className="relative mt-16 h-75 lg:mt-8">
                         <Image
                             alt="App screenshot"
-                            src="/home1.png"
+                            src="/home3.png"
                             width={1080}
                             height={1080}
                             className="absolute top-0 left-0 w-228 max-w-none rounded-md bg-white/5 ring-1 ring-white/10"

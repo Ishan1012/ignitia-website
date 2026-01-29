@@ -3,70 +3,57 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { ReactNode } from 'react';
 
-const teamMembers = [
+interface TeamMember {
+	name: string;
+	role: string;
+	imageUrl: string;
+	xUrl: string;
+	linkedinUrl: string;
+}
+
+const teamMembers: TeamMember[] = [
 	{
-		name: 'Sanskar Soni',
+		name: 'Alex Johnson',
 		role: 'Developers Head',
-		imageUrl: '/team/member1.jpg',
+		imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop',
 		xUrl: '#',
 		linkedinUrl: '#',
 	},
 	{
-		name: 'Shivam Singh',
+		name: 'Jordan Smith',
 		role: 'Developers Head',
-		imageUrl: '/team/member2.jpg',
+		imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&h=500&fit=crop',
 		xUrl: '#',
 		linkedinUrl: '#',
 	},
 	{
-		name: 'Aryan Bajpai',
+		name: 'Casey Williams',
 		role: 'Developer',
-		imageUrl: '/team/member3.jpg',
+		imageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&h=500&fit=crop',
 		xUrl: '#',
 		linkedinUrl: '#',
-	},
-	{
-		name: 'Parth Aggarwal',
-		role: 'Developer',
-		imageUrl: '/team/member4.jpg',
-		xUrl: '#',
-		linkedinUrl: '#',
-	},
-	{
-		name: 'Ritik Gupta',
-		role: 'Developer',
-		imageUrl: '/team/member5.jpg',
-		xUrl: '#',
-		linkedinUrl: '#',
-	},
-	{
-		name: 'Siddhant Narula',
-		role: 'Developer',
-		imageUrl: '/team/member6.jpg',
-		xUrl: '#',
-		linkedinUrl: '#',
-	},
+	}
 ];
 
-const juniorTeamMembers = [
+const juniorTeamMembers: TeamMember[] = [
 	{
-		name: 'Suryansh Sharan',
+		name: 'Sam Anderson',
 		role: 'Junior Developer',
-		imageUrl: '/team/junior1.jpg',
+		imageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&h=500&fit=crop',
 		xUrl: '#',
 		linkedinUrl: '#',
 	},
 	{
-		name: 'Divyansh Vijay',
+		name: 'Jordan Lee',
 		role: 'Junior Developer',
-		imageUrl: '/team/junior2.jpg',
+		imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop',
 		xUrl: '#',
 		linkedinUrl: '#',
 	},
 	{
-		name: 'Anshika',
+		name: 'Alex Chen',
 		role: 'Junior Developer',
-		imageUrl: '/team/junior3.jpg',
+		imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&h=500&fit=crop',
 		xUrl: '#',
 		linkedinUrl: '#',
 	}

@@ -64,7 +64,7 @@ const Header: React.FC = () => {
                 <div className="z-[101]" onMouseOver={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
                     <Link href="/" className="flex gap-3 font-extrabold text-2xl text-yellow-300 tracking-wider">
                         <Image src={'/icon.png'} width={500} height={500} className='h-auto w-5' alt='icon' />
-                        IGNITIA
+                        Tapestry
                     </Link>
                 </div>
 

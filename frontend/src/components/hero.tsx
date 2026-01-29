@@ -119,7 +119,7 @@ const HeroSection: React.FC = () => {
                         }}
                         onMouseOver={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
                     >
-                        IGNITIA 2K26
+                        Tapestry
                     </motion.h1>
                 </div>
 

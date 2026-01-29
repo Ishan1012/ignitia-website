@@ -21,14 +21,14 @@ const SponsorSection = () => {
                                     textShadow: "0 0 30px rgba(253,224,71,0.6), 0 0 60px rgba(253,224,71,0.4)"
                                 }}
                             >
-                                Rachit Finance Services
+                                Acme Financial Solutions
                             </h3>
                             <p className="text-md/6 text-gray-400">
                                 Trusted financial solutions and investment services dedicated to empowering individuals and businesses.
                             </p>
                             <div className="relative min-h-[500px] w-full grow max-lg:mx-auto max-lg:max-w-sm">
                                 <img
-                                    alt="Rachit Financial Services"
+                                    alt="Acme Financial Solutions"
                                     width={500}
                                     height={500}
                                     src="/sponsor1.jpeg"
@@ -45,13 +45,13 @@ const SponsorSection = () => {
                                         textShadow: "0 0 30px rgba(253,224,71,0.6), 0 0 60px rgba(253,224,71,0.4)"
                                     }}
                                 >
-                                    Tanishq
+                                    Stellar Jewelry
                                 </h3>
                                 <p className="text-md/6 text-gray-400">
-                                    India&apos;s most loved jewellery brand, blending craftsmanship with elegance and purity.
+                                    A modern jewellery house blending craftsmanship with timeless elegance.
                                 </p>
                                 <img
-                                    alt="Deep Wealth"
+                                    alt="Stellar Jewelry"
                                     width={500}
                                     height={500}
                                     src="/sponsor3.jpeg"
@@ -66,13 +66,13 @@ const SponsorSection = () => {
                                         textShadow: "0 0 30px rgba(253,224,71,0.6), 0 0 60px rgba(253,224,71,0.4)"
                                     }}
                                 >
-                                    Deep Wealth
+                                    BluePeak Wealth
                                 </h3>
                                 <p className="text-md/6 text-gray-400">
-                                    Your trusted partner in financial growth, wealth management, and long-term prosperity.
+                                    Your partner in financial growth, wealth management, and long-term prosperity.
                                 </p>
                                 <img
-                                    alt="Tanishq"
+                                    alt="BluePeak Wealth"
                                     width={500}
                                     height={500}
                                     src="/sponsor4.jpg"
@@ -88,13 +88,13 @@ const SponsorSection = () => {
                                     textShadow: "0 0 30px rgba(253,224,71,0.6), 0 0 60px rgba(253,224,71,0.4)"
                                 }}
                             >
-                                Rahul Sweets
+                                Sunnyvale Sweets
                             </h3>
                             <p className="text-md/6 text-gray-400">
-                                Serving sweetness and tradition since 1985 — a name synonymous with authentic Indian delicacies.
+                                Serving sweetness and tradition — a name synonymous with authentic delicacies.
                             </p>
                             <img
-                                alt="Rahul Since 1994"
+                                alt="Sunnyvale Sweets"
                                 width={500}
                                 height={500}
                                 src="/sponsor2.jpeg"
