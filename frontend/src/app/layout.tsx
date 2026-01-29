@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Tapestry",
-  description: "A Cultural Fest Website",
+  description: "A Cultural Fest Web Application",
 };
 
 export default function RootLayout({
